@@ -1,25 +1,20 @@
-from flask import Flask
-from openai import OpenAI
+from flask import Flask,request,jsonify
+from openai import OpenAI 
+
 app = Flask(__name__)
-
-
-@app.route("/")
-def hello_world():
-    return "Hello, World!"
-
 
 client = OpenAI(
     
-    api_key=("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"),
+    api_key=("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"),
 )
 # give books, docs , pods , yt vids
 
-def CustomChatGPTbooks(user_input):
+def CustomChatGPTbooks(topic,type):
     Book_response = client.chat.completions.create(
         model = "gpt-3.5-turbo",
         messages = [
-    {"role": "system", "content": "just give a list of the best books to learn about the given subject"},
-    {"role": "user", "content": user_input}
+    {"role": "system", "content": f"just give a list of the best{type} to learn about the given subject"},
+    {"role": "user", "content": topic}
   ]
     )
 
@@ -28,4 +23,17 @@ def CustomChatGPTbooks(user_input):
   
     return split_response
 
+@app.route('/')
+def hello_world():
+    return 'cxsxz'
 
+@app.route('/post', methods=["POST"])
+def send():
+     input_json = request.get_json(force=True) 
+     topic = input_json['topic']
+     type_of = input_json['type']
+     response = CustomChatGPTbooks(topic,type_of)
+     return jsonify(response)
+
+if __name__== '__main__':
+    app.run(debug=True)
