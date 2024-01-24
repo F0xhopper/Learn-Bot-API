@@ -1,11 +1,12 @@
 from flask import Flask,request,jsonify
 from openai import OpenAI 
+import apienv.constants
 
 app = Flask(__name__)
-
+apienv.constants.api_key
 client = OpenAI(
     
-    api_key=("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"),
+    api_key=(apienv.constants.api_key),
 )
 # give books, docs , pods , yt vids
 
