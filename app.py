@@ -1,14 +1,13 @@
 from flask import Flask,request,jsonify
 from openai import OpenAI 
 import apienv.constants
-
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
-apienv.constants.api_key
+CORS(app)
 client = OpenAI(
     
     api_key=(apienv.constants.api_key),
 )
-# give books, docs , pods , yt vids
 
 def CustomChatGPTbooks(topic,type):
     Book_response = client.chat.completions.create(
@@ -20,13 +19,14 @@ def CustomChatGPTbooks(topic,type):
     )
 
     ChatGPT_reply = [Book_response.choices[0].message.content]
-    split_response = ChatGPT_reply[0].split('\n') 
-  
-    return split_response
+    split_response = ChatGPT_reply[0].split('\n')
+    split_response_just_numberlist = []
+    for responses in split_response:
+        if responses[0].isnumeric():
+            split_response_just_numberlist.append(responses)
 
-@app.route('/')
-def hello_world():
-    return 'cxsxz'
+    return split_response_just_numberlist
+
 
 @app.route('/post', methods=["POST"])
 def send():
