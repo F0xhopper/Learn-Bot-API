@@ -20,12 +20,17 @@ def CustomChatGPTbooks(topic,type):
 
     ChatGPT_reply = [Book_response.choices[0].message.content]
     split_response = ChatGPT_reply[0].split('\n')
-    split_response_just_numberlist = []
-    for responses in split_response:
-        if responses[0].isnumeric():
-            split_response_just_numberlist.append(responses)
+    send = []
+    for response in split_response:
+        if len(response) != 0 and response[0].isnumeric():
+            send.append(response)
 
-    return split_response_just_numberlist
+        
+            
+
+            
+
+    return send
 
 
 @app.route('/post', methods=["POST"])
