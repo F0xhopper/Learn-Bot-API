@@ -2,6 +2,7 @@ from flask import Flask,request,jsonify
 from openai import OpenAI 
 import apienv.constants
 from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
 CORS(app)
 client = OpenAI(
