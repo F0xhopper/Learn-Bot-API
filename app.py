@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify
 from openai import OpenAI 
-import apienv.constants
+# import apienv.constants
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ CORS(app)
 
 client = OpenAI(
     
-    api_key=(apienv.constants.api_key),
+    api_key=('j'),
 )
 
 def find_results(topic,type):
