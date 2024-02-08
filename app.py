@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
+
 client = OpenAI(
     
     api_key=(apienv.constants.api_key),
@@ -37,6 +38,7 @@ def find_results(topic,type):
 
 
 @app.route('/post', methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def send():
      input_json = request.get_json(force=True) 
      topic = input_json['topic']
