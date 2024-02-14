@@ -39,7 +39,7 @@ def find_results(topic,type):
 
 
 @app.route('/post', methods=["POST"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def send():
      input_json = request.get_json(force=True) 
      topic = input_json['topic']
