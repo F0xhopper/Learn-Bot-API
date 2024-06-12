@@ -23,3 +23,7 @@ pip install -r requirements.txt
 Set OPENAI API key:
 
 API_KEY=your_openai_api_key
+
+Run Flask:
+
+flask run
