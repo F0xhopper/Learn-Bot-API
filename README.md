@@ -8,8 +8,18 @@ Features
 
 Usage
 
-git clone https://github.com/your-repo/flask-openai-app.git
+Clone repo:
+
+git clone https://github.com/F0xhopper/Learn-Bot-API
+
+Go into app:
 
 cd flask-openai-app
 
+Install dependencies:
+
 pip install -r requirements.txt
+
+Set OPENAI API key:
+
+API_KEY=your_openai_api_key
